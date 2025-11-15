@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { animateHero } from '../animations/gsapAnimations';
+import { animateHero, animateHeroExit } from '../animations/gsapAnimations';
 import ScrollIndicator from './ScrollIndicator';
 
 const Hero = () => {
@@ -8,31 +8,35 @@ const Hero = () => {
 
   useEffect(() => {
     animateHero(titleRef, taglineRef);
+    animateHeroExit();
   }, []);
 
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-purple-900/20 to-gray-900" />
+    <section className="hero-section relative h-screen flex items-center justify-center overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black" />
 
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/30 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/30 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+      <div className="absolute inset-0 opacity-40">
+        <div className="absolute top-1/3 left-1/4 w-80 h-80 bg-cyan-500/25 rounded-full blur-3xl" style={{ animation: 'float 8s ease-in-out infinite' }} />
+        <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-purple-500/25 rounded-full blur-3xl" style={{ animation: 'float 10s ease-in-out infinite 2s' }} />
+        <div className="absolute top-1/2 right-1/3 w-96 h-96 bg-cyan-600/10 rounded-full blur-3xl" style={{ animation: 'float 12s ease-in-out infinite 4s' }} />
       </div>
 
-      <div className="relative z-10 text-center px-6">
+      <div className="relative z-10 text-center px-6 max-w-6xl">
         <h1
           ref={titleRef}
-          className="text-7xl md:text-9xl font-bold text-white mb-6 tracking-tight"
+          className="text-7xl sm:text-8xl md:text-9xl font-black text-white mb-4 tracking-tighter leading-none"
           style={{
-            textShadow: '0 0 80px rgba(6, 182, 212, 0.5), 0 0 40px rgba(168, 85, 247, 0.3)',
-            fontFamily: "'Poppins', sans-serif"
+            textShadow: '0 0 60px rgba(6, 182, 212, 0.6), 0 0 30px rgba(168, 85, 247, 0.4), 0 0 100px rgba(6, 182, 212, 0.3)',
+            fontFamily: "'Poppins', sans-serif",
+            letterSpacing: '-0.02em',
           }}
         >
           BookSmart
         </h1>
         <p
           ref={taglineRef}
-          className="text-2xl md:text-4xl text-gray-300 font-light tracking-wide"
+          className="text-xl sm:text-2xl md:text-3xl text-gray-300 font-light tracking-wide mb-8"
+          style={{ letterSpacing: '0.05em' }}
         >
           Your Cinema, Your Way
         </p>

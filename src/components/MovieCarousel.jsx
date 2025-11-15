@@ -23,45 +23,55 @@ const MovieCarousel = () => {
   }, []);
 
   return (
-    <section id="movies" ref={carouselRef} className="relative h-screen bg-gradient-to-b from-gray-900 to-black overflow-hidden">
-      <div className="absolute inset-0 flex items-center">
-        <div className="flex gap-6 px-6">
+    <section id="movies" ref={carouselRef} className="relative h-screen bg-gradient-to-br from-gray-950 via-black to-gray-950 overflow-hidden">
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-cyan-500 rounded-full mix-blend-screen blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500 rounded-full mix-blend-screen blur-3xl" />
+      </div>
+
+      <div className="carousel-container absolute inset-0 flex items-center">
+        <div className="flex gap-6 px-6 py-20">
           {movies.map((movie) => (
             <div
               key={movie.id}
-              className="movie-card relative group flex-shrink-0 w-64 h-96 rounded-xl overflow-hidden cursor-pointer"
-              style={{ willChange: 'transform' }}
+              className="movie-card relative group flex-shrink-0 w-72 h-96 rounded-2xl overflow-hidden cursor-pointer shadow-2xl"
+              style={{ willChange: 'transform, opacity' }}
             >
               <img
                 src={movie.image}
                 alt={movie.title}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-125"
               />
 
-              <div className="absolute top-4 right-4 flex items-center gap-1 px-3 py-1 bg-black/70 backdrop-blur-sm rounded-full">
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
+
+              <div className="absolute top-4 right-4 flex items-center gap-1 px-4 py-2 bg-black/80 backdrop-blur-xl rounded-full border border-white/20 group-hover:border-cyan-400/50 transition-all duration-300">
                 <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
                 <span className="text-white text-sm font-semibold">{movie.rating}</span>
               </div>
 
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                  <h3 className="text-white text-xl font-bold mb-4">{movie.title}</h3>
-                  <button className="w-full px-6 py-3 bg-gradient-to-r from-cyan-500 to-purple-600 text-white rounded-full font-semibold hover:shadow-lg hover:shadow-cyan-500/50 transition-all">
+              <div className="absolute inset-0 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                <div className="p-6 pt-12 bg-gradient-to-t from-black via-black/80 to-transparent">
+                  <h3 className="text-white text-xl font-bold mb-3 line-clamp-2">{movie.title}</h3>
+                  <button className="w-full px-6 py-3 bg-gradient-to-r from-cyan-500 to-purple-600 text-white rounded-xl font-semibold hover:shadow-2xl hover:shadow-cyan-500/60 transition-all duration-300 hover:scale-105 active:scale-95">
                     Book Now
                   </button>
                 </div>
               </div>
 
-              <div className="absolute inset-0 ring-2 ring-transparent group-hover:ring-cyan-400 rounded-xl transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-cyan-400/50" />
+              <div className="absolute inset-0 ring-2 ring-transparent group-hover:ring-cyan-400/50 rounded-2xl transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-cyan-400/40 pointer-events-none" />
             </div>
           ))}
         </div>
       </div>
 
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none z-10">
-        <h2 className="text-5xl md:text-7xl font-bold text-white/10 mb-4">
-          Now Showing
-        </h2>
+      <div className="absolute inset-0 flex items-center justify-start pointer-events-none z-10 px-8">
+        <div className="opacity-5">
+          <h2 className="text-7xl md:text-9xl font-black text-white tracking-tighter">
+            Featured
+          </h2>
+          <p className="text-4xl font-light text-gray-400 mt-2">Now Showing</p>
+        </div>
       </div>
     </section>
   );
